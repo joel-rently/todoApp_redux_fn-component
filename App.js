@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
     shadowColor: 'gray',
   },
   buttonText: {
-    //joel
     color:'black',
     fontWeight: '500',
     fontSize: 15,

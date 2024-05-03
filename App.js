@@ -10,74 +10,18 @@ import {
   
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { createStore } from 'redux';
 import { Provider, useDispatch, useSelector } from 'react-redux';
+import configureStore from './redux/configureStore';
+import { addTodo,dltTodo,checked } from './redux/actions/actions';
 
-const CREATE_TODO = 'CREATE_TODO';
-const CHECKED_TODO = 'CHECKED_TODO';
-const REMOVE_TODO = 'REMOVE_TODO';
 
-let count = 0;
-const addTodo = (todoText) => {
-  return {
-    type: CREATE_TODO,
-    todoText,
-    id: ++count,
-  };
-};
-
-const dltTodo = (id) => {
-  return {
-    type: REMOVE_TODO,
-    id,
-  };
-};
-
-const checked = (id) => {
-  return {
-    type: CHECKED_TODO,
-    id,
-  };
-};
-
-const initialState = { todos: [] };
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case CREATE_TODO:
-      return {
-        ...state,
-        todos: [
-          ...state.todos,
-          { text: action.todoText, check: false, id: action.id },
-        ],
-      };
-    case REMOVE_TODO:
-      return {
-        ...state,
-        todos: state.todos.filter((item) => action.id !== item.id),
-      };
-    case CHECKED_TODO:
-      return {
-        ...state,
-        todos: state.todos.map((item) =>
-          item.id === action.id ? { ...item, check: !item.check } : item
-        ),
-      };
-
-    default:
-      return state;
-  }
-};
-let store = createStore(reducer);
-
+const store = configureStore();
 store.subscribe(() => {
   console.log(store.getState());
 });
 
 const App = () => {
   const [todo, setTodo] = useState('');
-  
   const myDispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
 

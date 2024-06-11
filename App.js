@@ -22,6 +22,7 @@ store.subscribe(() => {
 
 const App = () => {
   const [todo, setTodo] = useState('');
+  
   const myDispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
 

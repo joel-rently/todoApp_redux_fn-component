@@ -1,15 +1,15 @@
-import {CREATE_TODO,CHECKED_TODO,REMOVE_TODO} from '../actions/actionTypes'
+import {CREATE_TODO, CHECKED_TODO, REMOVE_TODO} from '../actions/actionTypes';
 
 const initialState = {todos: []};
 
- const  reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_TODO:
       return {
         ...state,
         todos: [
           ...state.todos,
-          { text: action.todoText, check: false, id: action.id },
+          {text: action.todoText, check: false, id: action.id},
         ],
       };
     case REMOVE_TODO:

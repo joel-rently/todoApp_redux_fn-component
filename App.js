@@ -33,7 +33,7 @@ const App = () => {
           value={item.check}
           onValueChange={() => myDispatch(checked(item.id))}
           style={styles.checkbox}
-        />
+        />  
 
         <Text style={[styles.cardText, item.check && styles.strikeText]}>
           {item.text}
